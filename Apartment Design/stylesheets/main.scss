@@ -1,0 +1,117 @@
+@import "variables";
+@import "typography";
+@import "buttons";
+
+@mixin transition {
+  transition: all 0.4s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $base-font;
+}
+
+.banner {
+  height: 100vh;
+  width: 100%;
+  background-image: linear-gradient(
+      $primary-background-gradient,
+      $primary-background-gradient
+    ),
+    url("../Images/Apartment.jpg");
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+      width: 120px;
+      cursor: pointer;
+    }
+    ul li {
+      display: inline-block;
+      margin: 0 20px;
+      list-style: none;
+      position: relative;
+
+      a {
+        text-decoration: none;
+        color: $primary-white;
+
+        text-transform: uppercase;
+      }
+      &::after {
+        content: "";
+        height: 3px;
+        width: 0;
+        background-color: $primary-theme;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        @include transition;
+      }
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .content {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: $primary-white;
+
+    h1 {
+      text-transform: uppercase;
+      font-size: 70px;
+      margin-top: 80px;
+    }
+    p {
+      margin: 20px auto;
+      font-weight: bold;
+      line-height: 25px;
+    }
+
+    button {
+      width: 250px;
+      padding: 15px 0;
+      text-align: center;
+      margin: 20px 10px;
+      border-radius: 25px;
+      font-weight: bold;
+      border: 2px solid $primary-theme;
+      background: transparent;
+      color: $primary-white;
+      cursor: pointer;
+      position: relative;
+
+      span {
+        background-color: $primary-theme;
+        height: 100%;
+        width: 0%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: -1;
+        @include transition;
+        border-radius: 25px;
+      }
+      &:hover span {
+        width: 100%;
+      }
+    }
+  }
+}
